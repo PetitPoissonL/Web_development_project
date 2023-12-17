@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>info contract</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link href="../css/quote.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <!-- Navigation-->
+    <div>
+      <%- include('./navbar'); %>
+    </div>
+    
+    <!-- Content section-->
+    <div class="container-fluid py-5">
+      <main>
+        <div class="row justify-content-md-cente">
+            <!-- il faut récupérer id de url!!! -->
+            <form action="" method="post">
+              <div class="py-5 text-center">
+                <h2>The informations of contract</h2>
+              </div>
+
+              <div class="row g-3">
+                <h4 class="mb-3">Your vehicle</h4>
+                <hr class="my-4">
+
+                <!-- Date of first registration of the vehicle -->
+                <div class="col-12" label="1ere_mise_en_circulationdu">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Date of first registration of the vehicle:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label name="first_driving" class="form-label"><%= info[3] %></label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Factory date -->
+                <div class="col-12" label="Factory_date">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Factory date:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" name="year_car"><%= info[4] %></label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Marque de votre véhicule -->
+                <div class="col-12" label="Marque_véhicule">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Level of vehicle Brand:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" name="level_car"><%= info[5] %></label>                       
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Vehicle energy -->
+                <div class="col-12" label="Energie_vehiculee">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Vehicle energy:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" name="energy_car"><%= info[6] %></label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Vehicle color -->
+                <div class="col-12" label="Energie_vehiculee">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Vehicle color:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label name="color_car" class="form-label"><%= info[7] %></label>                      
+                    </div>                   
+                  </div>
+                </div>
+
+                <!-- Vehicle usage -->
+                <div class="col-12" label="Usage_vehicule">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Vehicle usage:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" name="usage_car"><%= info[8] %></label>                       
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Nomber of km -->
+                <div class="col-12" label="Nombre_km">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Number of km that the vehicle will travel on average per year (all trips combined):</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label" name="km_car"><%= info[9] %></label>                     
+                    </div>                   
+                  </div>
+                </div>
+                <hr class="my-4">
+
+                <h4 class="mb-3">The Contract</h4>
+                <hr class="my-4">
+
+                <!-- start date -->
+                <div class="col-12" label="date_naissance">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Start date:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label name="birth_user" class="form-label"><%= startday %></label>
+                    </div>                    
+                  </div>
+                </div>
+
+                <!-- end date -->
+                <div class="col-12" label="date_permis">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">End date:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label name="start_permis" class="form-label"><%= endday %></label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Price -->
+                <div class="col-12" label="date_permis">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Price:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label name="end_permis" class="form-label"><%= info[0] %>€</label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- payout max -->
+                <div class="col-12" label="date_permis">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label class="form-label">Payout max:</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <label name="id_permis" class="form-label"><%= info[1] %>€</label>
+                    </div>                   
+                  </div>
+                </div>
+
+                <!-- deductible -->
+                <div class="col-12" label="date_permis">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label class="form-label">Deductible:</label>
+                      </div>
+                      <div class="col-sm-6">
+                        <label name="id_permis" class="form-label"><%= info[2] %>€</label>
+                      </div>                   
+                    </div>
+                  </div>
+
+                <hr class="my-4">
+              </div>
+            </form>
+        </div>
+      </main>
+    </div>
+    
+    <!-- Footer-->
+    <footer class="text-muted bg-light py-3">
+      <%- include('./footer'); %>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  </body>
+</html>

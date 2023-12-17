@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <!-- Navigation-->
+  <%- include('./navbar'); %>
+    <div class="text-center">
+      <h2 class="mt-5 mb-5 text-secondary">FAQ</h2>
+    </div>
+    <section class="container my-5" id="maincontent">
+      <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top"
+        aria-controls="faq-17" aria-expanded="false" data-toggle="collapse" href="#faq-17" style="text-decoration:none">
+        <i class="bi bi-bookmark-plus-fill fs-3"></i>
+        <span class="fs-2"> &nbsp Who are we ?</span>
+      </a>
+      <div class="collapse" id="faq-17">
+        <p>Our team is composed of 5 experts with many years of experience in the field of insurance.</p>
+      </div>
+
+      <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary border-top"
+        aria-controls="faq-18" aria-expanded="false" data-toggle="collapse" href="#faq-18" style="text-decoration:none">
+        <i class="bi bi-bookmark-plus-fill fs-3"></i>
+        <span class="fs-2">&nbsp What is the goal of our team ?</span>
+      </a>
+      <div class="collapse" id="faq-18">
+        <p>We want to provide the cheapest and most suitable insurance for each client.</p>
+      </div>
+
+      <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top"
+        aria-controls="faq-20" aria-expanded="false" data-toggle="collapse" href="#faq-20" style="text-decoration:none">
+        <i class="bi bi-bookmark-plus-fill fs-3"></i>
+        <span class="fs-2">&nbsp What is the best email to reach us at ?</span>
+      </a>
+      <div class="collapse" id="faq-20">
+        <p>The best email for any inquiries is email@email.com!</p>
+      </div>
+
+      <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top"
+        aria-controls="faq-21" aria-expanded="false" data-toggle="collapse" href="#faq-21" style="text-decoration:none">
+        <i class="bi bi-bookmark-plus-fill fs-3"></i>
+        <span class="fs-2">&nbsp Where can I read more about this company ?</span>
+      </a>
+      <div class="collapse" id="faq-21">
+        <p>https://gaufre.informatique.univ-paris-diderot.fr/poca-project/poca</p>
+      </div>
+
+      <a class="py-3 d-block h-100 w-100 position-relative z-index-1 pr-1 text-secondary  border-top"
+        aria-controls="faq-22" aria-expanded="false" data-toggle="collapse" href="#faq-22" style="text-decoration:none">
+        <i class="bi bi-bookmark-plus-fill fs-3"></i>
+        <span class="fs-2">&nbsp What is the best time to call ?</span>
+      </a>
+      <div class="collapse" id="faq-22">
+        <p>The best time to call is 24/7! We are always available to answer any questions.</p>
+      </div>
+    </section>
+
+    <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+      <%- include('./footer'); %>
+    </footer>
+
+</body>
+
+</html>

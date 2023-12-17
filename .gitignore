@@ -1,0 +1,18 @@
+.env
+dist
+node_modules
+.terraform*
+coverage
+.DS_Store
+note.txt
+#dir
+
+#file
+
+#log
+*.log
+
+#Package Files
+*.jar
+
+package-lock.json

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous" />
+  </head>
+
+  <body>
+    <!-- adding navbar partial to views -->
+    <%- include('./navbar'); %>
+      <!-- Do not delete this block -->
+      <div id="alert_register" style="display: hidden; text-align: center;"></div>
+
+      <div class="container-fluid">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="../images/login.jpg" class="img-fluid" alt="Image Of Login
+              Page" />
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <form action=/auth/authenticate method="post">
+              <div class="form-outline mb-4">
+                <span class="small fw-bold mt-2 pt-1 mb-1">Email</span>
+                <input type="email" class="form-control form-control-lg"
+                  placeholder="Your Email" name="email" />
+              </div>
+
+              <div class="form-outline mb-3">
+                <span class="small fw-bold mt-2 pt-1 mb-1">Password</span>
+                <input type="password" class="form-control form-control-lg"
+                  placeholder="Your password"
+                  name="password" />
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="/front/forgotpassword" class="small fw-bold mt-2 pt-1
+                  mb-0">Forgot your password ?</a>
+              </div>
+
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button type="submit" class="btn btn-primary btn-lg"
+                  style="padding-left: 2.5rem; padding-right: 2.5rem">
+                  Login
+                </button>
+                <p class="small fw-bold mt-2 pt-1 mb-0">
+                  Don't have an account yet ?
+                  <a href="/front/register" class="link-danger">Create an account</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+        <%- include('./footer'); %>
+        </footer>
+
+      </body>
+      <script>
+        const alert_register = document.getElementById('alert_register');
+        //cacher l'espace de message d'alert au début
+        // alert_register.style.display="none";
+        // Get URL parameters example : /ma-route?param1=value1&param2=value2
+        const params       = (new URL(document.location)).searchParams;
+        // Get item in param object
+        const statusCode   = params.get('status');
+        let className    = '';
+        let alertMessage = '';
+        console.log('params',     params);
+        console.log('statusCode', statusCode);
+        switch (statusCode)
+        {
+          // AuthResponse
+          case 'AUTHENTICATION_FAIL':
+            className = 'danger';
+            alertMessage = 'Incorrect Password';
+            alert_register.style.display="block";
+            break;
+          case 'USER_NOT_FOUND':
+            className = 'danger';
+            alertMessage = 'Unknown email';
+            alert_register.style.display="block";
+            break;
+          // RegisterResponse
+          case 'USER_ALREADY_EXISTS' :
+            className = 'warning';
+            alertMessage = 'You are already registered. Please login';
+            alert_register.style.display="block";
+            break;
+          case 'SUCCESS' :
+            className = 'success';
+            alertMessage = 'Your account is successfully created!';
+            alert_register.style.display="block";
+            break;
+          case 'SUCCESS_PASSWORD_RESET' :
+            className = 'success';
+            alertMessage = 'Your password has been changed !';
+            alert_register.style.display="block";
+            break;
+        }
+        // Insert message into HTML element as child
+        alert_register.innerHTML = alertMessage;
+        // Update class attribute of our element
+        alert_register.className = 'alert alert-' + className;
+      </script>
+
+    </html>

@@ -1,0 +1,25 @@
+.container-fluid {
+  max-width: 960px;
+}
+
+/* ne afficher pas les icons au fin de input du type number*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0; 
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.preview {
+  background:#888888;
+  width:550px;
+  height:auto;
+  text-align:center;
+}
+.preview img{
+  height:320px;
+  order:1;
+  vertical-align : middle;
+}

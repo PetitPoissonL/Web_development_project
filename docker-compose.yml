@@ -1,0 +1,16 @@
+version: '3.8'
+
+volumes:
+    db-data:
+
+services:
+    db:
+        image: postgres:12.11-alpine
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_USER: test
+            POSTGRES_PASSWORD: test
+            POSTGRES_DB: poca
+        volumes:
+            - db-data:/var/lib/postgresql

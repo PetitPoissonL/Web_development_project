@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>SNWLC Assurance</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+        <link href="../css/home.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <%- include('./navbar'); %>
+
+        <!-- Content section-->
+        <div id="alert_contact" style="display: hidden; text-align: center;"></div>
+
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <div id="alert_send_message" style="display: hidden; text-align: center;"></div>
+                        <h1 class="title display-5 fw-bolder">Contact Us</h1>
+                        <div class="fs-5 mb-5">
+                          
+                          <form action=/user/contact method="post">
+
+                            <div class="form-outline mb-4">
+                              <span class="small fw-bold mt-2 pt-1 mb-1">Email</span>
+                              <input type="email" class="form-control form-control-lg"
+                                id="email""
+                                placeholder="Your Email" name="email" />
+                            </div>
+
+                            <div class="form-outline mb-3">
+                              <span class="small fw-bold mt-2 pt-1 mb-1">Name & lastname</span>
+                              <input type="text" class="form-control form-control-lg"
+                                id="name"
+                                placeholder="Your name"
+                                name="name" />
+                            </div>
+
+                            <div class="form-outline mb-3">
+                              <span class="small fw-bold mt-2 pt-1 mb-1">Subject</span>
+                              <input type="text" class="form-control form-control-lg"
+                                id="subject"
+                                placeholder="Subject"
+                                name="subject" />
+                            </div>
+
+                            <div class="form-outline mb-3">
+                              <span class="small fw-bold mt-2 pt-1 mb-1">Message</span>
+                              <input type="text" class="form-control form-control-lg"
+                                placeholder="Your message"
+                                id="message""
+                                name="message" />
+                            </div>
+
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                              <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem">
+                                Submit
+                            </button>
+
+                            </div>
+                          
+                          </form>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="../images/contact.png" alt="Image Of Car Insurance" /></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer-->
+        <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+            <%- include('./footer'); %>
+        </footer>
+
+    </body>
+
+    <script>
+        const alert_contact = document.getElementById('alert_contact');
+        //cacher l'espace de message d'alert au début
+        // alert_contact.style.display="none";
+        // Get URL parameters example : /ma-route?param1=value1&param2=value2
+        const params       = (new URL(document.location)).searchParams;
+        // Get item in param object
+        const statusCode   = params.get('status');
+        let className    = '';
+        let alertMessage = '';
+        console.log('params',     params);
+        console.log('statusCode', statusCode);
+        switch (statusCode)
+        {
+          case 'SUCCESS' :
+            className = 'success';
+            alertMessage = 'Thank you. We will repond as soon as possible!';
+            alert_contact.style.display="block";
+            break;
+        }
+        // Insert message into HTML element as child
+        alert_contact.innerHTML = alertMessage;
+        // Update class attribute of our element
+        alert_contact.className = 'alert alert-' + className;
+
+        // find cookieValue in navbar.ejs 
+        // if (cookieValue)
+        // {
+        //     const element = document.getElementById('btn_account');
+        //     element.setAttribute("href", "/front/dashboard");
+        // }
+    </script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>SNWLC Assurance</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
+        <link href="../css/home.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <%- include('./navbar'); %>
+
+        <!-- Content section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="title display-5 fw-bolder">Fast, Free & Personalized</h1>
+                        <div class="fs-5 mb-5">
+                            <h3>Your Insurances</h3>
+                        </div>
+                        <p class="lead">With us, you can get a car insurance quote in as little as four minutes from a top-rated company. 
+                        That's all it takes to get the customized protection you need at a price that works for you.</br>
+                        Get an auto insurance quote today and discover how we help you save and give you peace of mind.
+                        </p>
+                        <div class="mt-4" style="border-top: 0.2em solid #005CAF; width: 55%"></div>
+                        <div class="mt-5">
+                          <a class="quote-btn btn me-3" href="/front/quote">Get a quote</a>
+                          <a id="btn_account" class="space-btn btn" href="/front/login">Management</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="../images/car_home.png" alt="Image Of Car Insurance" /></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer-->
+        <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+            <%- include('./footer'); %>
+        </footer>
+
+    </body>
+    <script>
+        // find cookieValue in navbar.ejs 
+        if (cookieValue)
+        {
+            // change espace personel redirect page if login 
+            const element = document.getElementById('btn_account');
+            element.setAttribute("href", "/front/dashboard");
+        }
+    </script>
+</html>

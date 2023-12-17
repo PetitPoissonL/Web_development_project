@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>info person</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+
+    <!-- Custom styles for this template -->
+    <link href="../css/sidebars.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="/front">SNWLC INSURANCE</a>
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('./sidebar'); %>
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h3">My information</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                        </div>
+                    </div>
+                    
+                        <div style="padding: 100px 100px 10px;">
+                            <!-- <form class="bs-example bs-example-form" role="form" action=/auth/changer_info  method="post"> -->
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Firstname</span>
+                                <!-- <span class="form-control" aria-label="Amount (to the nearest dollar)" style="color:gray"><%= userPrenom %></span> -->
+                                <span class="input-group-text form-control"><%= userPrenom %></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Lastname</span>
+                                <span class="input-group-text form-control" aria-label="Amount (to the nearest dollar)" ><%= userNom %></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Birthday</span>
+                                <span class="input-group-text form-control" aria-label="Amount (to the nearest dollar)" ><%= userBirth %></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Email</span>
+                                <span class="input-group-text form-control" aria-label="Amount (to the nearest dollar)"><%= userEmail %></span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Permission ID</span>
+                                <span class="input-group-text form-control" aria-label="Amount (to the nearest dollar)"><%= userPermis %></span>
+                            </div>
+                            <div class=" mb-3">
+                            <form class="bs-example bs-example-form" role="form" action=/dashboard/changer_info  method="post">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Previous password</span>
+                                    <input type="password" name="old_mdp" class="form-control" placeholder="Enter your old password" aria-label="old_mdp" aria-describedby="button-addon2" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">New password</span>
+                                    <input type="password" class="form-control"  name="new_mdp" placeholder="Enter your new password" aria-label="new_mdp" aria-describedby="button-addon2" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Verify new password</span>
+                                    <input type="password" name="check_mdp" class="form-control" placeholder="Confirm your new password" aria-label="check_mdp" aria-describedby="button-addon2" required>
+                                    <button id="my-button" class="btn btn-outline-secondary" type="submit" id="button-addon2" name="mdp_button" >Changer</button>
+                                </div>
+                            <!-- Do not delete this block -->
+                            <div id="alert"></div>
+                            </form>
+                        </div>
+                            <form class="bs-example bs-example-form" role="form" action=/dashboard/changer_mobile  method="post">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Mobile</span>
+                                    <input type="text" name="mobile" class="form-control" aria-label="mobile" aria-describedby="button-addon2" value='<%= userMobile %>'>
+                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2" onclick="isPhoneAvailable()">Changer</button>
+                                    <!-- <span id="notice"></span> -->
+                                </div>
+                                <div id="alert_mobile"></div>
+                            </form>
+                            <form class="bs-example bs-example-form" role="form" action=/dashboard/changer_adresse  method="post">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Address</span>
+                                    <input type="text" name="adresse" class="form-control" aria-label="adresse" aria-describedby="button-addon2" value='<%= userAdresse %>'>
+                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Change</button>
+                                </div>
+                            </form>
+                            <!-- </form> -->
+                        </div>
+                    
+                </main>
+            </div>
+        </div>
+        <!-- <div>
+            <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+                <%- include('./footer'); %>
+            </footer>
+        </div> -->
+    </body>
+    <script>
+        // Get DOM element by id
+        const alertElement = document.getElementById('alert');
+        //cacher l'espace de message d'alert au début
+        alertElement.style.display="none";
+        // Get URL parameters example : /ma-route?param1=value1&param2=value2
+        const params       = (new URL(document.location)).searchParams;
+        // Get item in param object
+        const statusCode   = params.get('status');
+        let className    = '';
+        let alertMessage = '';
+        switch (statusCode)
+        {
+            case 'PASSWORD_CHANGED_SUCCESS' :
+                className = 'success';
+                alertMessage = 'Mot de passe changé avec succès';
+                alertElement.style.display="";
+                break;
+            case 'NEW_PASSWORD_NO_MATCH' :
+                className = 'warning';
+                alertMessage = 'New password does not match';
+                alertElement.style.display="";
+                break;
+            case 'PASSWORD_NO_MATCH' :
+                className = 'danger';
+                alertMessage = 'Old passwor is not correct';
+                alertElement.style.display="";
+                break;
+        }
+        // Insert message into HTML element as child
+        alertElement.innerHTML = alertMessage;
+        // Update class attribute of our element
+        alertElement.className = 'alert alert-' + className;
+
+
+        const alertElement_mobile = document.getElementById('alert_mobile');
+        alertElement_mobile.style.display="none";
+        switch (statusCode)
+        {
+            case 'MOBILE_NO_MATCH_FORMAT' :
+                className = 'danger';
+                alertMessage = 'Mobile does not match format';
+                alertElement_mobile.style.display="";
+                break;
+            case 'MOBILE_CHANGED_SUCCESS' :
+                className = 'success';
+                alertMessage = 'Your mobile is changed'
+                alertElement_mobile.style.display="";
+                break;
+        }
+        alertElement_mobile.innerHTML = alertMessage;
+        alertElement_mobile.className = 'alert alert-' + className;
+    </script>
+
+</html>

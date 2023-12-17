@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<title>Dashboard</title>
+		<!-- Bootstrap CSS -->
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+		
+		<!-- Custom styles for this template -->
+    	<link href="../css/dashboard.css" rel="stylesheet">
+		<style>a{TEXT-DECORATION:none}</style> 
+	
+	</head>
+	<body>
+		
+		<!-- Navbar-->
+		<div>
+			<%- include('./navbar'); %>
+		</div>
+		
+		<!-- Content section-->
+		<div class="container-fluid py-5">
+			
+			<!-- icons -->
+			<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+				<symbol id="my_information" viewBox="0 0 16 16">
+					<path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+				</symbol>
+				<symbol id="my_quotes" viewBox="0 0 16 16">
+					<path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+  				<path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+				</symbol>
+				<symbol id="damage_report" viewBox="0 0 16 16">
+					<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+				</symbol>
+				<symbol id="my_messages" viewBox="0 0 16 16">
+					<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+				</symbol>
+				<symbol id="new_quote" viewBox="0 0 16 16">
+					<path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+				</symbol>
+				<symbol id="my_contracts" viewBox="0 0 16 16">
+					<path d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+				</symbol>
+			</svg>
+			
+			<main>
+				<div class="bd-intro pt-2 ps-lg-2">
+					<!-- Welcome -->
+					<div class="d-md-flex flex-md-row align-items-center justify-content-between border-bottom">
+						<div class="fs-4 mb-3">
+							Welcome, <%= userEmail %>
+						</div>
+						<div>
+							<form action=/auth/logout  method="post">
+								<button type="submit" class="btn btn-primary" >Sign out</button>
+							</form>	
+						</div>
+					</div>
+
+					<div class="row row-cols-1 row-cols-md-2 align-items-md-center py-5">
+						<!-- 6 menus -->
+						<div class="row row-cols-2 row-cols-sm-3 g-4">
+							
+							<!-- My information -->
+							<div class="d-flex flex-column gap-2 media position-relative">
+								<div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+									<svg class="bi" width="1em" height="1em">
+										<use xlink:href="#my_information" />
+									</svg>
+								</div>
+								<a href="/dashboard/info_perso" class="fw-bold fs-5 link-dark stretched-link">My information</a>
+								<p class="text-muted">View and modify my personal information, change password.</p>
+							</div>
+			
+							<!-- My quotes -->
+							<div class="d-flex flex-column gap-2 media position-relative">
+								<div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+									<svg class="bi" width="1em" height="1em">
+										<use xlink:href="#my_quotes" />
+									</svg>
+								</div>
+								<a href="/dashboard/my_quotes" class="fw-bold fs-5 link-dark stretched-link">My quotes</a>
+								<p class="text-muted">Find and view details of quotations and purchase.</p>
+							</div>
+			
+							<!-- Damage report -->
+							<div class="d-flex flex-column gap-2 media position-relative">
+								<div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+									<svg class="bi" width="1em" height="1em">
+										<use xlink:href="#damage_report" />
+									</svg>
+								</div>
+								<a href="/dashboard/damage-claim" class="fw-bold fs-5 link-dark stretched-link">Damage report</a>
+								<p class="text-muted">Declare and fill in the vehicle accident information.</p>
+							</div>
+			
+							<!-- My messages -->
+							<div class="d-flex flex-column gap-2 media position-relative">
+								<div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+									<svg class="bi" width="1em" height="1em">
+										<use xlink:href="#my_messages" />
+									</svg>
+								</div>
+								<a href="" class="fw-bold fs-5 link-dark stretched-link">My messages</a>
+								
+								<p class="text-muted">View and manage all my messages.</p>
+							</div>
+
+							<!-- New quote -->
+							<div class="d-flex flex-column gap-2 media position-relative">
+								<div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+									<svg class="bi" width="1em" height="1em">
+										<use xlink:href="#new_quote" />
+									</svg>
+								</div>
+								<a href="/front/quote" class="fw-bold fs-5 link-dark stretched-link">New quote</a>
+								<p class="text-muted">Need a new insurance policy. Fill out a new quote form.</p>
+							</div>
+			
+							<!-- My contracts -->
+							<div class="d-flex flex-column gap-2 media position-relative">
+								<div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+									<svg class="bi" width="1em" height="1em">
+										<use xlink:href="#my_contracts" />
+									</svg>
+								</div>
+								<a href="/dashboard/my_contracts" class="fw-bold fs-5 link-dark stretched-link">My contracts</a>
+								<p class="text-muted">View and manage all my insurance contracts.</p>
+							</div>
+						</div>
+
+						<!-- image of dashboard -->
+						<div class="d-flex flex-column align-items-start gap-2">
+							<img src="../images/dashboard.png" class="img-fluid" alt="Image Of Dashboard" />
+						</div>
+
+					</div>
+				</div>
+			</main>
+		 </div>
+		 <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+			<%- include('./footer'); %>
+		</footer>
+	</body>
+</html>

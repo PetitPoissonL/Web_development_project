@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+        <link href="../css/sidebars.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="/front">SNWLC INSURANCE</a>
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('./sidebar'); %>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h3">My contracts</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <% if(userContracts.length === 0) {%>
+                    <h4>You have not paid any quotes!</h4>
+                    <% } else { %>
+                    <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Car model</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Payment max</th>
+                        <th scope="col">Payment min</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0;i< userContracts.length;i++){ %>
+                            <tr>
+                                <td><%= userContracts[i][0] %></td>
+                                <td><%= userContracts[i][1] %></td>
+                                <td><%= userContracts[i][2] %></td>
+                                <td><%= userContracts[i][3] %></td>
+                                <td><%= userContracts[i][4] %></td>
+                                <td>
+                                    <!-- id est indice de cette quote dans la liste user.quote -->
+                                    <a type="button" class="btn btn-primary" href="/dashboard/info_contract?id=<%= userContracts[i][0] %>">Check</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                    </table>
+                    <% } %>
+                </div>
+            
+            </main>
+        </div>
+        </div>
+    </body>
+</html>

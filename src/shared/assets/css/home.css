@@ -1,0 +1,20 @@
+
+.quote-btn, .space-btn{
+    background-color:#FFFFFB;
+    color:#005CAF;
+    display:inline-block;
+    border-radius:1.5em;
+    border:0.2em solid #005CAF;
+    padding:0.35em 1.2em;
+    text-align:center;
+}
+
+.quote-btn:hover, .space-btn:hover{
+    color:#FFFFFB;
+    background-color:#005CAF;
+}
+
+.title{
+    color:#005CAF;
+}
+

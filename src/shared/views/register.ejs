@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous" />      
+  </head>
+
+  <body>
+    <!-- adding navbar partial to views -->
+    <%- include('./navbar'); %>
+      <div class="container-fluid py-5", id = 'Main'>
+
+        <div class="row d-flex justify-content-center align-items-center h-100" >
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="../images/register.png" class="img-fluid" alt="Image Of Register
+              Page" />
+          </div>
+          <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" style="line-height: 2.5em;">
+            <form action=/auth/register method="post">
+                <!-- le type et name du champ sont identiques -->
+                <strong>Email</strong> 
+                <input class="form-control" type="email"  name="email"placeholder="Email" required/>
+    
+                <strong>Password</strong>
+                <input class="form-control" type="password" name="password" placeholder="Password" required/>
+                <!-- <input type="hidden" name="token" value=""></input><br> -->
+
+                <strong>Password Recovery: Secret Question</strong><br/>
+                <select class="form-control" name="question" required>
+                    <option value="">--Please choose a question--</option>
+                    <option value="1">In which city were you born ?</option>
+                    <option value="2">What is your favorite movie ?</option>
+                    <option value="3">What is the make of your first car ?</option>
+                    <option value="4">What is your favorite color ?</option>
+                    <option value="5">What is your favorite video game ?</option>
+                    <option value="6">Who is your favorite historical personality ?</option>
+                    <option value="6">Who is your favorite actor, musician or artist?</option>
+                </select>
+
+                <strong>Answer</strong><br/>
+                <input class="form-control" type="text" name="answer" placeholder="Answer" required/>
+    
+                <strong>Firstname</strong>
+                <input class="form-control" type="text" name="firstname"placeholder="Firstname" required/>
+    
+                <strong>Lastname</strong>
+                <input class="form-control" type="text" name="lastname" placeholder="Lastname" required/>
+                <!-- <input type="hidden" name="token" value=""></input><br> -->
+    
+                <strong> Mobile (ex:0666666666) </strong>
+                <input class="form-control" type="tel" name="mobile" placeholder="Mobile"  pattern="[0-9]{10}" required/>
+    
+                <strong> Address </strong>
+                <input class="form-control" type="text" name="address" placeholder="Address" required/>
+    
+                <strong> Birthday </strong><br>
+                <input id = data class="form-control" type="date" name="birth" placeholder="Birthday" min="1000-01-01"  max = "3000-01-01" required/>
+                <div id="alert"></div>
+                <script>
+                    const alertElement = document.getElementById('alert');
+                    var d=new Date();   
+                    var year=d.getFullYear()
+                    function check(){
+                        value = document.getElementById("data").value
+                        let year_gave = value.match(/^[0-9]*/);
+                        
+                        if (year_gave[0] > year - 17){
+                          alertElement.innerHTML = "You must be at least 18 years old. You cannot user this service!"; 
+                          alertElement.className = 'alert alert-warning';
+                          return false;
+                        }else if( year-year_gave[0] >= 79){
+                          alertElement.innerHTML = "Your age is above the age of 79. You cannot use this service!"; 
+                          alertElement.className = 'alert alert-warning';
+                          return false;
+                        }else{
+                          alertElement.innerHTML = ""; 
+                          alertElement.className = "";
+                          return true;}
+                    }
+                </script>
+                <!-- <input type="text" id="datepicker" name="birth" placeholder="Birth" required/> -->
+
+                <button class="btn btn-primary mt-5" type="submit" style="height:50px; width:200px" onclick="return check();" >Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <footer class="py-3 bg-secondary bottom-0 w-100">
+        <%- include('./footer'); %>
+        </footer>
+
+      </body>
+</html>

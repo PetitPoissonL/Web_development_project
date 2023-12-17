@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Devis - SNWLC ASSURANCE</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/quote.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navigation-->
+  <div>
+    <%- include('./navbar'); %>
+  </div>
+
+  <!-- Do not delete this block -->
+  <div id="alert_permission_id" style="display: hidden; text-align: center;"></div>
+  <!-- Content section-->
+  <div class="container-fluid py-5">
+    <main>
+
+      <div class="py-5 text-center">
+        <h2>Let's start the quote</h2>
+        <p class="lead">Only 5 minutes to get your personalized quote.</p>
+      </div>
+
+      <div class="row justify-content-md-cente">
+        <!-- <form action=/quote method="post"> -->
+
+        <form action=/quote/storage_data method="post" class="needs-validation" novalidate>
+          <div class="row g-3">
+            <h4 class="mb-3">Find your vehicle</h4>
+            <hr class="my-4">
+
+            <!-- Date of first registration of the vehicle -->
+            <div class="col-12" label="1ere_mise_en_circulationdu">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="year_car" class="form-label">Date of first
+                    registration of the vehicle:</label>
+                </div>
+                <div class="col-sm-6">
+                  <!-- FIX ME : first_driving undefined in quote controller -->
+                  <input type="date" name="first_driving" id="date_circulation" aria-label="year" class="form-control"
+                    required>
+                  <div class="invalid-feedback">
+                    The date is not validated
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Factory date -->
+            <div class="col-12" label="Factory_date">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="year_car" class="form-label">Factory date:</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="string" class="form-control" id="year_car" name="year_car" placeholder="year (ex : 1999)" value=""
+                    required>
+                  <div class="invalid-feedback">
+                    The date is not validated
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Marque de votre véhicule -->
+            <div class="col-12" label="Marque_véhicule">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="marque" class="form-label">Vehicle Brand:</label>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-select" name="level_car" id="marque" onchange="updateData()" required>
+                    <option value="">Choose the vehicle brand</option>
+                    <option label="AIWAYS" value="1">AIWAYS</option>
+                    <option label="ALEKO" value="1">ALEKO</option>
+                    <option label="ALFA ROMEO" value="1">ALFA ROMEO</option>
+                    <option label="ALPINE RENAULT" value="4">ALPINE RENAULT</option>
+                    <option label="ARO" value="4">ARO</option>
+                    <option label="ASIA" value="3">ASIA</option>
+                    <option label="ASTON MARTIN" value="1">ASTON MARTIN</option>
+                    <option label="AUDI" value="1">AUDI</option>
+                    <option label="AUSTIN" value="3">AUSTIN</option>
+                    <option label="AUTOBIANCHI" value="2">AUTOBIANCHI</option>
+                    <option label="AUVERLAND" value="1">AUVERLAND</option>
+                    <option label="BEDFORD" value="1">BEDFORD</option>
+                    <option label="BEE BEE AUTOMOTIVE" value="1">BEE BEE
+                      AUTOMOTIVE</option>
+                    <option label="BENTLEY" value="2">BENTLEY</option>
+                    <option label="BERTONE" value="3">BERTONE</option>
+                    <option label="BMW" value="2">BMW</option>
+                    <option label="BUICK" value="3">BUICK</option>
+                    <option label="CADILLAC" value="3">CADILLAC</option>
+                    <option label="CHEVROLET" value="2">CHEVROLET</option>
+                    <option label="CHRYSLER" value="4">CHRYSLER</option>
+                    <option label="CITROEN" value="1">CITROEN</option>
+                    <option label="COURB" value="2">COURB</option>
+                    <option label="CUPRA" value="1">CUPRA</option>
+                    <option label="DACIA" value="2">DACIA</option>
+                    <option label="DAEWOO" value="3">DAEWOO</option>
+                    <option label="DAF" value="3">DAF</option>
+                    <option label="DAIHATSU" value="1">DAIHATSU</option>
+                    <option label="DAIMLER" value="3">DAIMLER</option>
+                    <option label="DATSUN" value="2">DATSUN</option>
+                    <option label="DFSK" value="4">DFSK</option>
+                    <option label="DODGE" value="4">DODGE</option>
+                    <option label="DS" value="2">DS</option>
+                    <option label="EBRO" value="2">EBRO</option>
+                    <option label="FERRARI" value="2">FERRARI</option>
+                    <option label="FIAT" value="1">FIAT</option>
+                    <option label="FISKER" value="1">FISKER</option>
+                    <option label="FORD" value="3">FORD</option>
+                    <option label="FSO-POLSKI" value="2">FSO-POLSKI</option>
+                    <option label="GAC GONOW" value="2">GAC GONOW</option>
+                    <option label="GME" value="1">GME</option>
+                    <option label="GRANDIN" value="1">GRANDIN</option>
+                    <option label="HONDA" value="2">HONDA</option>
+                    <option label="HYUNDAI" value="1">HYUNDAI</option>
+                    <option label="INFINITI" value="2">INFINITI</option>
+                    <option label="INNOCENTI" value="2">INNOCENTI</option>
+                    <option label="ISUZU" value="1">ISUZU</option>
+                    <option label="IVECO" value="3">IVECO</option>
+                    <option label="JAGUAR" value="4">JAGUAR</option>
+                    <option label="JEEP" value="1">JEEP</option>
+                    <option label="KIA" value="2">KIA</option>
+                    <option label="LADA" value="3">LADA</option>
+                    <option label="LAMBORGHINI" value="3">LAMBORGHINI</option>
+                    <option label="LANCIA" value="4">LANCIA</option>
+                    <option label="LAND ROVER" value="3">LAND ROVER</option>
+                    <option label="LDV" value="4">LDV</option>
+                    <option label="LEXUS" value="1">LEXUS</option>
+                    <option label="LOTUS" value="1">LOTUS</option>
+                    <option label="LYNK&amp;CO" value="4">LYNK&amp;CO</option>
+                    <option label="MAHINDRA" value="6">MAHINDRA</option>
+                    <option label="MAN" value="1">MAN</option>
+                    <option label="MARUTI" value="2">MARUTI</option>
+                    <option label="MASERATI" value="2">MASERATI</option>
+                    <option label="MATRA" value="3">MATRA</option>
+                    <option label="MAZDA" value="2">MAZDA</option>
+                    <option label="MCC" value="2">MCC</option>
+                    <option label="MEGA" value="1">MEGA</option>
+                    <option label="MERCEDES" value="2">MERCEDES</option>
+                    <option label="MG" value="3">MG</option>
+                    <option label="MIA" value="3">MIA</option>
+                    <option label="MINI" value="2">MINI</option>
+                    <option label="MITSUBISHI" value="1">MITSUBISHI</option>
+                    <option label="MPM MOTORS" value="3">MPM MOTORS</option>
+                    <option label="NISSAN" value="1">NISSAN</option>
+                    <option label="OPEL" value="2">OPEL</option>
+                    <option label="PANHARD" value="1">PANHARD</option>
+                    <option label="PEUGEOT" value="2">PEUGEOT</option>
+                    <option label="PIAGGIO" value="4">PIAGGIO</option>
+                    <option label="PONTIAC" value="1">PONTIAC</option>
+                    <option label="PORSCHE" value="2">PORSCHE</option>
+                    <option label="PROTON" value="1">PROTON</option>
+                    <option label="RENAULT" value="3">RENAULT</option>
+                    <option label="ROVER" value="1">ROVER</option>
+                    <option label="SAAB" value="2">SAAB</option>
+                    <option label="SANTANA" value="3">SANTANA</option>
+                    <option label="SEAT" value="1">SEAT</option>
+                    <option label="SKODA" value="4">SKODA</option>
+                    <option label="SMART" value="4">SMART</option>
+                    <option label="SSANGYONG" value="2">SSANGYONG</option>
+                    <option label="SUBARU" value="3">SUBARU</option>
+                    <option label="SUNBEAM" value="3">SUNBEAM</option>
+                    <option label="SUZUKI" value="2">SUZUKI</option>
+                    <option label="TALBOT" value="2">TALBOT</option>
+                    <option label="TATA" value="2">TATA</option>
+                    <option label="TESLA" value="1">TESLA</option>
+                    <option label="THINK" value="1">THINK</option>
+                    <option label="TOYOTA" value="4">TOYOTA</option>
+                    <option label="TRIUMPH" value="2">TRIUMPH</option>
+                    <option label="UMM" value="3">UMM</option>
+                    <option label="VOLKSWAGEN" value="4">VOLKSWAGEN</option>
+                    <option label="VOLVO" value="1">VOLVO</option>
+                    <option label="ZASTAVA" value="2">ZASTAVA</option>
+                    <option label="ZAZ" value="4">ZAZ</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select the brand of the vehicle
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle energy -->
+            <div class="col-12" label="Energie_vehiculee">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="energie" class="form-label">Vehicle energy:</label>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-select" name="energy_car" id="energie" onchange="updateData()" required>
+                    <option value="">Choose the vehicle energy</option>
+                    <option label="ESSENCE" value="2">ESSENCE</option>
+                    <option label="DIESEL" value="1">DIESEL</option>
+                    <option label="HYBRIDE" value="3">HYBRIDE</option>
+                    <option label="ELECTRIQUE" value="4">ELECTRIQUE</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please choose the vehicle energy.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle color -->
+            <div class="col-12" label="Energie_vehiculee">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="couleur" class="form-label">Vehicle color:</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" id="color_car" name="color_car" aria-label="couleur" class="form-control"
+                    placeholder="color (ex : red)" required>
+                  <div class="invalid-feedback">
+                    Please enter the vehicle color.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle usage -->
+            <div class="col-12" label="Usage_vehicule">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="usage_car" class="form-label">Vehicle usage:</label>
+                </div>
+                <div class="col-sm-6">
+                  <select class="form-select" name="usage_car" id="usage_car" onchange="updateData()" required>
+                    <option value="">Choose the vehicle usage</option>
+                    <option label="Loisirs exclusivement" value="4">Leisure
+                      exclusively</option>
+                    <option label="Loisirs et trajets travail" value="3">Leisure
+                      & work trips</option>
+                    <option label="Loisirs et affaires" value="2">Leisure &
+                      business</option>
+                    <option label="Tournées Régulières" value="1">Regular
+                      tours</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please choose the vehicle usage.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nomber of km -->
+            <div class="col-12" label="Nombre_km">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="Nombre_km" class="form-label">Number of km
+                    that the vehicle will travel on average per year (all
+                    trips combined):</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" name="km_car" id="Nombre_km" onchange="updateData()" placeholder="km (ex : 10000)" value=""
+                  required>
+                  <div class="invalid-feedback">
+                    The number of km is not validated.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+
+            <h4 class="mb-3">The primary driver</h4>
+            <hr class="my-4">
+
+            <!-- Birthdate -->
+            <!-- <div class="col-12" label="date_naissance">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="dateNaissance" class="form-label">Birthdate:</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="date" name="birth_user" id="naissance_date_adult" aria-label="naissance"
+                    class="form-control" required>
+                  <div class="invalid-feedback">
+                    The birthday is not validated.
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- license acquisition date -->
+            <div class="col-12" label="date_permis">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="datePermis" class="form-label">license
+                    acquisition date:</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="date" name="start_permis" id="permis_date_adult" aria-label="datePermis"
+                    class="form-control" required>
+                  <div class="invalid-feedback">
+                    The license acquisition date is not validated.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- license expiry date -->
+            <div class="col-12" label="date_permis">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="dateLimitePermis" class="form-label">Licence
+                    expiry date:</label>
+                </div>
+                <div class="col-sm-6">
+                  <!-- TODO
+                    1. Get value from EJS
+                    2. Set value attribute into inputc
+                    3. disabled="true"
+                  -->
+                  <input type="date" name="end_permis" id="permis_date_limit" aria-label="datePermis"
+                    class="form-control" required>
+                  <div class="invalid-feedback">
+                    The license expiry date is not validated.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- id de son permis -->
+            <div class="col-12" label="date_permis">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="idPermis" class="form-label" >License ID:</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="number" id="id_permis" name="id_permis" aria-label="idPermis" class="form-control"
+                    placeholder="driving id (ex : 123456789)"  required>
+                  <div class="invalid-feedback">
+                    The license ID is not validated
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <h4 class="mb-3">Additional information</h4>
+            <hr class="my-4">
+
+            <!-- Votre nom et prénom -->
+            <!-- <div class="col-12" label="nom_prénom">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="nomPrénom" class="form-label">Your first and
+                    last names:</label>
+                </div>
+                <div class="col-sm-6">
+                  <div class="input-group">
+                    <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Frist name"
+                      required>
+                    <div class="invalid-feedback">
+                      Please enter your first name.
+                    </div>
+                    <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last name"
+                      required>
+                    <div class="invalid-feedback">
+                      Please enter your last name.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- Email -->
+            <div class="col-12" label="nom_prénom">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="email" class="form-label">Email:</label>
+                </div>
+                <div class="col-sm-6">
+
+                      <input type="email" name="email" id="email" aria-label="email" class="form-control"
+                      placeholder="email@example.com">
+
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Adresse -->
+            <!-- <div class="col-12" label="Adresse">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="adresse" class="form-label">Address:</label>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" name="address" id="address" aria-label="Adresse" class="form-control"
+                    placeholder="Numéro et Rue" required>
+                  <div class="invalid-feedback">
+                    Please enter your address.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <hr class="my-4">
+          <div class="col-12" label="condition">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+              <label class="form-check-label" for="flexCheckDefault">
+                I acknowledge that, in the course of finalising this quote,
+                SNWLC Insurance may contact me by telephone. </label>
+              <div class="invalid-feedback">
+                You must accept before submitting.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+          <input type="number" style="display:none" name="payout_max" id="payout_max" value="" required>
+          <input type="number" style="display:none" name="price" id="price" value="" required>
+          <input type="number" style="display:none" name="payout_min" id="payout_min" value="500" required>
+          <button type="submit" class="w-100 btn btn-primary">
+            Next step
+          </button>
+
+
+
+          <!-- Button target => id -->
+          <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#Modal">Open modal</button> -->
+          <!-- Modal : user exists -->
+          <div class="modal fade" id="modal_user_exists" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Want to manage your quote
+                    easily ?</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  It looks like you already have an existing account.
+                  <br>Please login.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, thanks</button>
+                  <a id="btn_account" class="btn btn-primary" href="/front/login">Log In</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal : new client -->
+          <div class="modal fade" id="modal_new_user" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5">Want to manage your quote
+                    easily ?</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  It looks like you do not have any account.<br />Please create one.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, thanks</button>
+                  <a id="btn_account" class="btn btn-primary" href="/front/register">Create Account</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal : user already login-->
+          <div class="modal fade" id="modal_user_login" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="connecteModalLabel">Bravo ! Your quote is ready !</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  One click to enjoy your marvellous quote! 
+                </div>
+                <div class="modal-footer" id="div_payment">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, thanks</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer-->
+  <footer class="text-muted bg-secondary py-3">
+    <%- include('./footer'); %>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous">
+  </script>
+  <script type="text/javascript">
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+      'use strict'
+
+      // Default values for testing purpose only        
+      // document.getElementById('date_circulation').setAttribute('value', '1995-11-11');
+      // document.getElementById('year_car').setAttribute('value', '1998');
+      // document.getElementById('color_car').setAttribute('value', 'blue');
+      // document.getElementById('Nombre_km').setAttribute('value', '100');
+      // document.getElementById('permis_date_adult').setAttribute('value', '2000-11-11');
+      // document.getElementById('permis_date_limit').setAttribute('value', '2030-11-11');
+      // document.getElementById('id_permis').setAttribute('value', '123456789');
+      // document.getElementById('flexCheckDefault').setAttribute('value', true);
+      // document.getElementById('payout_max').setAttribute('value', '');
+
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+
+    // pour choisir la date, la valeur max doit être inferieur à la date d'aujourd'hui - 18 ans
+    function date_adult() {
+      var d = new Date();
+      d.toLocaleDateString();
+      d.setFullYear(d.getFullYear() - 18);
+      return d
+    }
+    // document.getElementById('naissance_date_adult').setAttribute('max', date_adult().toISOString().split('T')[0])
+    document.getElementById('permis_date_adult').setAttribute('max', date_adult().toISOString().split('T')[0])
+
+    // Date de limite de son permis doit être superieur qu'aujourd'hui
+    document.getElementById('permis_date_limit').setAttribute('min', new Date().toISOString().split('T')[0])
+
+    // Date de 1ère mise en circulation du véhicule doit être inferieur qu'aujourd'hui
+    document.getElementById('date_circulation').setAttribute('max', new Date().toISOString().split('T')[0])
+    
+
+    // FIX ME : mettre dans un autre fichier
+    function updateData() {
+      var brand = Number(document.getElementsByName('level_car')[0].value);
+      var energy = Number(document.getElementsByName('energy_car')[0].value);
+      var usage = Number(document.getElementsByName('usage_car')[0].value);
+      var coef_km = null;
+      console.log(brand, energy, usage, coef_km)
+      // .value pour avoir la valeur
+      // [0] pour prendre l'element exact
+      var km = document.getElementsByName('km_car')[0].value;
+
+      if (km > 0 && km < 1000)
+        coef_km = 1.05;
+      if (km >= 1000 && km < 10000)
+        coef_km = 1.1;
+      if (km >= 10000 && km < 20000)
+        coef_km = 1.2;
+      if (km >= 20000 && km < 30000)
+        coef_km = 1.3;
+      if (km >= 30000)
+        coef_km = 1.4;
+
+      var price = Math.ceil(20 * (brand * 0.2 + 1) * (energy * 0.1 + 1) * (usage * 0.05 + 1) * coef_km)
+      var payoutMax = price * 800
+
+      // document.getElementById('price') === $("#price")
+      // document.getElementById('price').setAttribute('value', price); === $("#price").attr("value", price)
+      document.getElementById('price').setAttribute('value', price);
+
+      // $("#payout_max").attr("value", payoutMax) === $("#payout_max").attr("value", payoutMax)
+      document.getElementById('payout_max').setAttribute('value', payoutMax);
+    }
+
+    // If the user does not exist (status=2), store the form data temporarily
+    const alert_register = document.getElementById('alert_permission_id');
+    const params = (new URL(document.location)).searchParams;
+    const statusCode = params.get('status');
+    const quoteIdCode = params.get('id');
+    console.log('statusCode:', statusCode);
+    console.log('quoteIdCode:', quoteIdCode);
+    let className    = '';
+    let alertMessage = '';
+    console.log("quote ejs : statusCode=", statusCode)
+       
+    switch (statusCode) {
+      case 'NOT_REGISTERED':
+        const modal_new_user = new bootstrap.Modal(document.getElementById('modal_new_user'), {
+          keyboard: false
+        })
+        modal_new_user.show()
+        break;
+
+      case 'REGISTERED_AND_AUTHENTICATED':
+        const modal_user_login = new bootstrap.Modal(document.getElementById('modal_user_login'), {
+          keyboard: false
+        })
+
+        // update herf for pay online button
+        var index = div_payment.getElementsByTagName('a').length + 1;
+        var newLink = '<a id="btn_payment" class="btn btn-primary" href="/dashboard/info_quote?id=' + quoteIdCode +'">Pay Online</a>';
+        div_payment.innerHTML += newLink;
+        modal_user_login.show()
+        break;
+
+      case 'REGISTERED_NOT_AUTHENTICATED':
+        const modal_user_exists = new bootstrap.Modal(document.getElementById('modal_user_exists'), {
+          keyboard: false
+        })
+        modal_user_exists.show()
+        break;
+      
+      case 'PERMISSION_ID_NO_MATCH':
+        className = 'danger';
+        alertMessage = 'Your permission id is not the same. Please check it.';
+        alert_permission_id.style.display="block";
+        break;
+
+      case 'PERMISSION_ALREADY_EXISTS':
+        className = 'danger';
+        alertMessage = 'We did not find your account but your permission id exists already. Please contact us.';
+        alert_permission_id.style.display="block";
+        break;
+    }
+    // Insert message into HTML element as child
+    alert_permission_id.innerHTML = alertMessage;
+    // Update class attribute of our element
+    alert_permission_id.className = 'alert alert-' + className;
+
+    //decrypto token and get contents
+    function parseJwt (token) {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    }
+
+    //disable email input if user already login
+    if (cookieValue){
+        console.log(cookieValue)
+        const res = parseJwt(cookieValue)
+        const email_element = document.getElementById('email');
+        email_element.setAttribute('value', res.email.toString())
+        email_element.setAttribute('readonly','readonly');
+    }
+
+  </script>
+</body>
+</html>

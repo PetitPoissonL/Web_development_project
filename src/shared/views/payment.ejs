@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+    </head>
+    <body>
+        <%- include('./navbar'); %>
+        <!-- <h1>Page payment</h1> -->
+        <div id="alert_card" style="display: hidden; text-align: center;"></div>
+        <div style="padding: 100px 100px 10px;">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Quote id</span>
+                <span class="input-group-text form-control"><%= quoteId %></span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Amount</span>
+                <span class="input-group-text form-control" aria-label="Amount (to the nearest dollar)" ><%= quotePrice %></span>
+            </div>
+            <div class=" mb-3">
+            <form class="bs-example bs-example-form" role="form" action="/dashboard/check_payment?id=<%= quoteId %>"  method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Card Number</span>
+                    <input type="string" name="card_number" <% if(cardNumber) {%> value="<%= cardNumber %>" <% } %> oninput = "value=value.replace(/[^\d]/g,'')"                     class="form-control" aria-label="card_number" aria-describedby="button-addon2" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Cardholder name</span>
+                    <!-- <input type="text" class="form-control"  name="card_name" aria-label="card_name" aria-describedby="button-addon2" required> -->
+                    <span class="input-group-text form-control"><%= firstName %> <%= lastName %></span>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Expiry date</span>
+                    <input class="form-control" name="exp_date" id="exp_date" type="month" value="<%= cardExp_date %>"  aria-label="exp_date" aria-describedby="button-addon2" max = "2042-01" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Security Number</span>
+                    <input type="password" class="form-control" 
+                    <% if(cardCvv) {%> value="<%= cardCvv %>" <% } %>
+                    onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="3" name="sec_number" aria-label="sec_number" aria-describedby="button-addon2" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Number of installments</span>
+                    <select class="form-select" name="nb_instal" id="nb_instal" required>
+                        <option value="">Choose the number of installments</option>
+                        <option label="1" value="1"></option>
+                        <option label="2" value="2"></option>
+                        <option label="3" value="3"></option>
+                        <option label="6" value="6"></option>
+                        <option label="12" value="12"></option>
+                      </select>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button onclick=" return isvalideCard()" class="btn btn-primary" type="submit">Pay</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-3 bg-secondary position-fixed bottom-0 w-100">
+            <%- include('./footer'); %>
+        </footer>
+
+    </body>
+
+    
+    <script type="text/javascript">
+        let d = new Date();
+        let month = d.getMonth()+1;
+        let year = d.getFullYear();
+        document.getElementById('exp_date').setAttribute('min', year+"-"+month)
+
+        // validate credit card : Luhn algorithm
+        function isvalideCard(){
+            const luhnCheck = num => {
+                let arr = (num + '')
+                    .split('')
+                    .reverse()
+                    .map(x => parseInt(x));
+                let lastDigit = arr.splice(0, 1)[0];
+                let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+                sum += lastDigit;
+                return sum % 10 === 0;
+            };
+
+            const card_number_nodeList = document.getElementsByName("card_number")
+            const card_number = card_number_nodeList[0].value
+            // console.log("card_number", card_number)
+            // console.log(luhnCheck(card_number))
+            // console.log(card_number[0].value)
+            const alertElement = document.getElementById('alert_card');
+            alertElement.style.display="none";
+            if (luhnCheck(card_number)===false){
+                className = 'danger';
+                alertMessage = 'The credit card you filled out is not in the correct format';
+                alertElement.innerHTML = alertMessage;
+                alertElement.className = 'alert alert-' + className;
+                alertElement.style.display=""
+                return false;
+            }
+            return true;
+        }
+        
+
+    </script>
+
+
+</html>
